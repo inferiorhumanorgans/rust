@@ -559,6 +559,8 @@ fn configure_cmake(
 
         if target.contains("netbsd") {
             cfg.define("CMAKE_SYSTEM_NAME", "NetBSD");
+        } else if target.contains("dragonfly") {
+            cfg.define("CMAKE_SYSTEM_NAME", "DragonFly");
         } else if target.contains("freebsd") {
             cfg.define("CMAKE_SYSTEM_NAME", "FreeBSD");
         } else if target.contains("windows") {
