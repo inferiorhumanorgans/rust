@@ -382,7 +382,9 @@ fn main() {
             } else {
                 println!("cargo:rustc-link-lib=static={stdcppname}");
             }
-        } else if cxxflags.contains("stdlib=libc++") {
+        } else if !is_crossed && cxxflags.contains("stdlib=libc++") {
+            // Same logic as above.  If we're in a cross build we pick up the
+            // host's C++ flavor which may not match the target.
             println!("cargo:rustc-link-lib=c++");
         } else {
             println!("cargo:rustc-link-lib={stdcppname}");
